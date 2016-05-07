@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
 
   resources :users
+  resources :posts
 
-  get 'comments/index'
-
-  get 'comments/show'
+  root 'users#new'
 
   get 'comments/new'
 
@@ -14,31 +13,7 @@ Rails.application.routes.draw do
 
   get 'comments/edit'
 
-  get 'posts/index'
-
-  get 'posts/show'
-
-  get 'posts/new'
-
-  get 'posts/create'
-
-  get 'posts/destroy'
-
-  get 'posts/edit'
-
-  get 'users/index'
-
-  get 'users/update'
-
-  get 'users/show'
-
-  get 'users/new'
-
-  get 'users/create'
-
-  get 'users/destroy'
-
-  get 'users/edit'
+  # get 'users#update'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

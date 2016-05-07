@@ -1,0 +1,17 @@
+/*nav {
+	background: white;
+}*/
+
+ul {
+	display: inline-block;
+}
+
+li {
+	display: inline;
+	padding-right: 20px;
+}
+
+li a {
+	text-decoration: none;
+	color: black;
+}

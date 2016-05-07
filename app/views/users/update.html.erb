@@ -5,9 +5,7 @@
 <%=f.text_field :lname %>
 <%=f.label "username" %>
 <%=f.text_field :username %>
-<%=f.label "password" %>
+<%=f.label :password %>
 <%=f.text_field :password %>
 <%=f.submit %>
 <% end %>
-
-<%= link_to "Delete", user_path(@user), method: :delete %>

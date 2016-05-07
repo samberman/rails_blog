@@ -26,7 +26,7 @@ posts = []
 users.each do |user|
 
 	25.times do
-		posts << Post.create(user_id: user.id, title: Faker::Lorem.words(3), body: Faker::Lorem.paragraph(4))
+		posts << Post.create(user_id: user.id, title: Faker::Lorem.sentence(3), body: Faker::Lorem.paragraph(4))
 	end
 
 end

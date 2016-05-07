@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @post = Post.new
+    @posts = Post.all
   end
 
   def show
@@ -8,11 +8,11 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.find(params[:id][:user_id])
+    @post = Post.find(params[:id][:user])
   end
 
   def create
-    @Post.create(body: params[:body], :user_id params[:user_id])
+    @post.create(params[:post])
     redirect_to post_path(@post.user)
   end
 
@@ -27,6 +27,6 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    redirect_to "index.html.erb"
+    redirect_to posts_path
   end
 end

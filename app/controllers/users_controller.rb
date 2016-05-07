@@ -8,6 +8,8 @@ class UsersController < ApplicationController
 # redirect to a route that will "GET" a view
   def update
     @user = User.find(params[:id])
+    @user.update(params[:user])
+    redirect_to user_path(@user)
   end
 
   def show
@@ -24,16 +26,25 @@ class UsersController < ApplicationController
 # at the end of the method you will have to
 # redirect to a route that will "GET" a view
   def create
-    @user = User.create(username: params[:user][:username], )
-    redirect_to user_path(@user)
+    @user = User.new(params[:user])
+    puts params.inspect
+    if @user.save
+      flash[:notice] = "Welcome to the CerebralPosi blog!"
+      redirect_to user_path @user
+    else
+      flash[:alert] = "Sorry, something went wrong."
+      render :new
+    end
+    
   end
 # the following is not a "GET" method
 # it will actually update the database
 # at the end of the method you will have to
 # redirect to a route that will "GET" a view
   def destroy
-    @user = User.find(params[:id]
+    @user = User.find(params[:id])
     @user.destroy
+    redirect_to users_path
   end
 # the following IS a "GET" method
 # it simply displays a view page with a form

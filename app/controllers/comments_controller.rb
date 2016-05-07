@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
     def index
-    @comment = Comment.new
+    @comments = Comment.all
   end
 
   def show
@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
   end
 
   def new
-    @comment = Comment.find(params[:id][:user_id])
+    @comment = Comment.find(params[:id][:user])
   end
 
   def create
@@ -27,6 +27,6 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    redirect_to "index.html.erb"
+    redirect_to post_path
   end
 end
