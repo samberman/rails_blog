@@ -1,4 +1,16 @@
 
-<%= link_to "#{@post.user.username}", users_path(@user) %>
+<%= link_to "#{@post.user_id}", users_path(@user) %>
 <%= @post.title %>
 <%= @post.body %>
+
+	<div id="new_post">
+			<%= form_for Post.new do |f| %>
+			<%=f.label "title" %>
+			<%=f.text_field :title %><br>
+			<%=f.label "body" %>
+			<%=f.text_area :body %>
+			<%=f.submit %>
+			<% end %>
+	</div>
+
+	

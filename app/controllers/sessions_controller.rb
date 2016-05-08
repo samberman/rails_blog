@@ -1,0 +1,23 @@
+class SessionsController < ApplicationController
+
+	def new
+			# session[:current_user_id] = @user.id
+		# current_user = User.find_by_id(session[:current_user_id])
+	end
+
+	def create
+ 		@user = User.where(username: params[:username]).first
+		if @user && @user.password == params[:password]
+		# session[:user_id] = @user.id
+		# flash[:notice] = "You have logged in successfully."
+		# else
+		# flash[:alert] = "Sorry, you are not logged in."
+		redirect_to root_path
+		end
+  
+	end
+
+	def destroy
+		
+	end
+end

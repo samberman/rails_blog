@@ -13,6 +13,10 @@ Rails.application.routes.draw do
 
   get 'comments/edit'
 
+  get  '/login', to: 'sessions#new'
+
+  post '/login', to: 'sessions#create'
+
   # get 'users#update'
 
   # The priority is based upon order of creation: first created -> highest priority.
