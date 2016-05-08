@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
 
 	def new
 			# session[:current_user_id] = @user.id
-		# current_user = User.find_by_id(session[:current_user_id])
+			current_user = User.find_by_id(session[:current_user_id])
 	end
 
 	def create

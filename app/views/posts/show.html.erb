@@ -1,5 +1,5 @@
 
-<%= link_to "#{@post.user_id}", users_path(@user) %>
+<%= link_to "#{@post.user.username}", user_path(@post.user) %>
 <%= @post.title %>
 <%= @post.body %>
 
@@ -13,4 +13,5 @@
 			<% end %>
 	</div>
 
+	<%= link_to "Edit Post", edit_post_path %>
 	

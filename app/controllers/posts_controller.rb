@@ -9,12 +9,16 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    # @user = User.find(params[:id])
+    # @post = @user.posts.new(params[:post])
   end
 
   def create
     @post = Post.new(post_params)
     # redirect_to posts_path @post
     # @post.user_id = 3
+    # @post.user_id = current_user.id
+    
     # @post.user_id = current_user.id
     if @post.save
       flash[:notice] = "Your post was added successfully!"
@@ -26,8 +30,9 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find(params[:id])
-    redirect_to post_path(post.user)
+    @post = Post.find(post_params)
+    @post.update(post_params)
+    redirect_to post_path(@post.user)
   end
 
   def edit
@@ -36,12 +41,12 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    redirect_to posts_path
+    redirect_to post_path(@post.user)
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:user_id, :username, :title, :body)
+    params.require(:post).permit(:user_id, :username, :title, :body).merge(user: current_user)
   end
 end
