@@ -7,27 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-			<%= form_tag '/login', method: :post do %>
-					<%= label_tag :username %>
-					<%= text_field_tag :username %>
-					<%= label_tag :password %>
-					<%= password_field_tag :password %>
-					<%= submit_tag 'Sign in' %>	
-			<% end %>
 		
-		<nav>
-			<ul>
-				<li><%= link_to "Sign up!", new_user_path %></li>
-				<li><%= link_to "Log in!", login_path %></li>
-				<li><%= link_to "Users", users_path %></li>
-				<li><%= link_to "Posts", posts_path %></li>
-			</ul>
-		</nav>
-
-		
-
-	<%= flash[:notice] if flash[:notice] %>
-	<%= flash[:alert] if flash[:alert] %>
+		<%= flash[:notice] if flash[:notice] %>
+		<%= flash[:alert] if flash[:alert] %>
 <%= yield %>
 </body>
 </html>
