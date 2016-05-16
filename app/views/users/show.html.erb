@@ -1,33 +1,27 @@
 <%= link_to "Users", users_path %>
 <%= link_to "Posts", posts_path %>
+<%= link_to("Logout",  logout_path, method: :delete) %>
 
 <h2><%= @user.username %></h2>
 <h2><%= @user.fname %></h2>
 <h2><%= @user.lname %></h2>
 
 
-<%= link_to("Logout",  logout_path, method: :delete) %>
+
 
 	<div id="about">
 			<h3>About Me</h3>
 			<p>In my years, I've seen all sounds of misconception.. When I wake up I like a pound of bacon. Come'on shout it out. But I'm okay just pain me. Will break down what little is left, yeah. Take it very slow. So when you hold onto the past then you. What happened to me I don't understand.. It's what we live for. Rock, It's what we're all about. Hustling deals like Mickey Macoote. Every hit hurts like your kiss. It's not what I said but intentions you've read.. Start off the day with my arteries shaking. She said, you don't even know</p>
 	</div>
 
-	<!-- <div id="new_post">
-			<%= form_for Post.new do |f| %>
-			<%=f.label "title" %>
-			<%=f.text_field :title %><br>
-			<%=f.label "body" %>
-			<%=f.text_area :body %>
-			<%=f.submit %>
-			<% end %>
-	</div> -->
+	<%= link_to "Create a new post",new_post_path %>
+
 
 	<div id="posts">
 			<h3>My Posts</h3>
 			<% @user.posts.each do |b| %>
 			<br>		
-			<%= b.title %>
+			<h1><%= link_to b.title, post_path(b) %></h1>
 			<%= b.body %>
 			<% end %>
 	</div>

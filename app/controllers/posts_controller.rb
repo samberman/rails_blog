@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all
+    @posts = Post.all.order('created_at DESC')
   end
 
   def show
@@ -30,18 +30,19 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find(post_params)
+    @post = Post.find(params[:id])
     @post.update(post_params)
-    redirect_to post_path(@post.user)
+    redirect_to @post
   end
 
   def edit
     @post = Post.find(params[:id])
   end
-
   def destroy
+  #puts params.inspect("***********")
     @post = Post.find(params[:id])
-    redirect_to post_path(@post.user)
+    @post.destroy
+    redirect_to user_path
   end
 
   private

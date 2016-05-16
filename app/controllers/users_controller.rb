@@ -18,6 +18,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @post = Post.new
   end
 # the following IS a "GET" method
 # it simply displays a view page with a form
