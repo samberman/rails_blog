@@ -1,5 +1,5 @@
 
-<%= link_to "#{@post.user.username}", post_path(@post.user) %>
+<%= link_to @post.user.username, user_path(@post.user) %>
 <%= @post.title %>
 <%= @post.body %>
 
@@ -16,6 +16,21 @@
 		<%= f.submit :update%>
 
 	<% end %>
+
+	<div id="comments">
+		<% @post.comments.each do |x| %>
+		<%= x.user.username %><br>
+		<%= x.body %>
+		<%= link_to "Delete Comment", post_comment_path(@post, x.id), method: :delete %>
+		<% end %>
+
+		<%= form_for [@post, @comment] do |f| %>
+			<%=f.label "body" %>
+			<%=f.text_area :body %>
+			<%=f.hidden_field :user_id, value: current_user.id %>
+			<%=f.submit %>
+		<% end %>
+	</div>
 
 		<%= link_to "Edit Post", edit_post_path %>
 		

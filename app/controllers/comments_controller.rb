@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-    def index
+  def index
     @comments = Comment.all
   end
 
@@ -8,16 +8,17 @@ class CommentsController < ApplicationController
   end
 
   def new
-    @comment = Comment.find(params[:id][:user])
+    @comment = Comment.new
   end
 
   def create
-    @Comment.create(body: params[:body], :user_id params[:user_id], post_id: params[:post_id])
-    redirect_to post_path(@post.user)
+    @comment = Comment.create(params.require(:comment).permit(:body).merge(user: current_user, post_id: params[:post_id]))
+    redirect_to post_path(@comment.post)
   end
 
   def update
-    @Comment = Comment.find(params[:id], post_id: params[:post_id], user_id: params[:user_id])
+    @comment = Comment.find(params[:id], post_id: params[:post_id], user_id: params[:user_id])
+    @comment.update(params[:id])
     redirect_to post_path(post.user)
   end
 
@@ -27,12 +28,13 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    redirect_to post_path
+    @comment.destroy
+    redirect_to post_path(params[:post_id])
   end
 
-  private
+  # private
 
-  def comment_params
-    params.require(:comment).permit(:user_id, :username, :post_id, :body)
-  end
+  # def comment_params
+  #   params.require(:comment).permit(:user_id, :username, :post_id, :body)
+  # end
 end
